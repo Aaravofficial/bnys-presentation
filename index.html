@@ -195,6 +195,12 @@
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 
 
+        /*   🪄  This Forces The Browser To Respect Multiple Spacebar Taps Everywhere !!  🪄   */
+        h1, h2, h3, h4, p, span, button, .panel-title, .status-text {
+            white-space: pre-wrap;
+        }
+
+        
         .watercolor-blob-tl { position: absolute; top: -250px; left: -150px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(168,213,186,0.6) 0%, rgba(255,255,255,0) 70%); z-index: 1; pointer-events: none; }
         .watercolor-blob-br { position: absolute; bottom: -250px; right: -150px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(168,213,186,0.5) 0%, rgba(255,255,255,0) 70%); z-index: 1; pointer-events: none; }
         .gold-line-br { position: absolute; bottom: 60px; right: 60px; width: 230px; height: 350px; border-right: 2px solid #c9a255; border-bottom: 2px solid #c9a255; border-bottom-right-radius: 20px; z-index: 2; }
@@ -290,7 +296,7 @@
 
         
         .slide-10 { flex-direction: column; }
-        .s10-image { width: 100%; height: 600px; background: url('https://images.unsplash.com/photo-1590393802688-e160e1d1eb97?auto=format&fit=crop&w=1920&q=80') center/cover; position: relative; }
+        .s10-image { width: 100%; height: 600px; background: url('https://images.unsplash.com/photo-1623356302008-8e6bfabf1d43?auto=format&fit=crop&w=1920&q=80') center/cover; position: relative; }
         .s10-image::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 200px; background: linear-gradient(to top, #fff, transparent); }
         .s10-content { height: 480px; padding: 60px 150px; text-align: center; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
         .s10-content h2 { font-size: 60px; color: #2c4435; margin-bottom: 20px; }
@@ -332,7 +338,7 @@
     <div id="ui-wrapper">
         <div class="glass-panel">
             <div class="panel-header">
-                <div class="panel-title">🪄   NATUROPATHY  PRESENTATION   🪄</div>
+                <div class="panel-title"><span style="font-size: 10px;">🪄   NATUROPATHY  PRESENTATION   🪄</span></div>
             </div>
             <div class="code-container">
                 <pre><code id="code-display">Loading  Source   🪄  .....</code></pre>
@@ -369,8 +375,8 @@
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="">
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="">
                 <div class="s1-text">
-                    <h1>Kulranjan<br><br>Mukherjee</h1>
-                    <h3>THE ARCHITECT OF INDIAN NATUROPATHY</h3>
+                    <h1>Kulranjan<br>Mukherjee<br></h1>
+                    <h3>THE  ARCHITECT  OF  INDIAN  NATUROPATHY</h3>
                 </div>
                 <div class="s1-footer">
                     <span>BNYS Physiology of Nature Cure</span><span>•</span>
@@ -469,6 +475,7 @@
                 </div>
             </div>
 
+            
             <!--   SLIDE - 8   -->
             <div class="slide slide-8">
                 <div class="s8-glass-panel">
@@ -482,6 +489,7 @@
                 </div>
             </div>
 
+            
             <!--   SLIDE - 9   -->
             <div class="slide slide-9">
                 <div class="watercolor-blob-br" style="opacity: 0.6;"></div>
@@ -497,14 +505,16 @@
                 </div>
             </div>
 
+            
             <!--   SLIDE - 10   -->
             <div class="slide slide-10">
                 <div class="s10-image"></div>
                 <div class="s10-content">
-                    <h2>University of Patanjali</h2>
-                    <p>A holistic education environment in Haridwar with yoga and naturopathy framing the student experience[span_23](start_span)[span_23](end_span). The green surroundings and discipline-focused campus mood perfectly support the legacy of promotive health and natural healing[span_24](start_span)[span_24](end_span).</p>
+                    <h2>University of Patanjali & The Mukherjee Legacy</h2>
+                    <p>The University of Patanjali in Haridwar Stands as a Modern Testament to Dr. Mukherjee's Early Vision .  His Relentless Research to Transform Nature Cure From a Folk Tradition into a Structured ,  Physiological Science Laid The Exact Groundwork That Patanjali Now Institutionalizes .  Today ,  The BNYS Program Embodies his Core Belief :  Natural Healing must be Studied and Practiced With Supreme Clinical Rigor .</p>
                 </div>
             </div>
+            
 
             <!--   SLIDE - 11   -->
             <div class="slide slide-11">
@@ -515,6 +525,7 @@
                 </div>
             </div>
 
+            
             <!--   SLIDE - 12   -->
             <div class="slide slide-12">
                 <div class="watercolor-blob-tl"></div>
