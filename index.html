@@ -42,7 +42,15 @@
             overflow: hidden;
             display: flex;
             background-color: #fff;
-            /* Removed the page-break command to stop the blank pages */
+            
+            /* --- THE BLANK PAGE FIX --- */
+            page-break-inside: avoid;
+            page-break-after: always;
+        }
+
+        /* Prevents an empty page at the very end */
+        .slide:last-child {
+            page-break-after: avoid;
         }
 
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
@@ -480,12 +488,13 @@
         // Hide button while capturing
         btn.classList.add('hide-for-pdf');
         
-        // Increased scale to 2 for much sharper text resolution
+        // Added pagebreak css rule and locked window width to 1920
         const opt = {
             margin:       0,
-            filename:     'AaRAv  --  05 - 07 - 2026.pdf',
+            filename:     'Lakshmi Presentation.pdf',
             image:        { type: 'jpeg', quality: 1.0 },
-            html2canvas:  { scale: 2, useCORS: true, scrollY: 0 }, 
+            pagebreak:    { mode: 'css' },
+            html2canvas:  { scale: 2, useCORS: true, scrollY: 0, windowWidth: 1920 }, 
             jsPDF:        { unit: 'px', format: [1920, 1080], orientation: 'landscape', hotfixes: ["px_scaling"] }
         };
 
