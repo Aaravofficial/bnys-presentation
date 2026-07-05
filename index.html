@@ -323,6 +323,35 @@
         .s12-ref { font-size: 20px; color: #666; margin-bottom: 25px; line-height: 1.5; padding-left: 20px; border-left: 3px solid #eee; }
 
         
+        /*   ==========================================================================
+                        🪄   PDF  FIXES   :   FROSTED  GLASS  ILLUSION   🪄
+             ==========================================================================   */
+        
+        /* 
+           The Snapshot Tool Cannot Calculate Real Background Blur .
+           Instead of Making It Solid White, This Block Creates a Beautiful 
+           " Frosted Glass "  Illusion Using a  Semi - Transparent  Gradient , 
+           a Sharp White Edge ,  & a Soft Shadow !! 
+        */
+        .pdf-export-mode .s4-glass-panel,
+        .pdf-export-mode .s8-glass-panel,
+        .pdf-export-mode .s12-box,
+        .pdf-export-mode .s3-card,
+        .pdf-export-mode .s6-circle {
+            /*   Creates a Slightly Transparent ,  Frosty Gradient  (  White To Very Light Green  )   */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(232, 245, 233, 0.75) 100%) !important;
+            
+            /*   Adds a Sharp, Glassy White Reflection On The Borders   */
+            border: 2px solid rgba(255, 255, 255, 0.9) !important;
+            
+            /*   Adds a Soft Shadow Behind The Box To Separate It From The Background Leaves   */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+            
+            /*   Disables The Actual Blur So The Library Doesn't Crash   */
+            backdrop-filter: none !important;
+        }
+
+    
     </style>
     
 </head>
@@ -630,6 +659,9 @@
             btn.innerHTML = "🪄   Compiling  PDF   🪄";
             btn.style.pointerEvents = "none";
             
+            //   🪄  FIX - 1  :  Turn On The Solid White Backgrounds So The PDF is Readable
+            document.body.classList.add('pdf-export-mode');
+
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: [1280, 720] });
             const slides = document.querySelectorAll('.slide');
@@ -640,7 +672,15 @@
 
             for (let i = 0; i < slides.length; i++) {
                 const canvas = await html2canvas(slides[i], { 
-                    scale: 2, useCORS: true, logging: false, backgroundColor: "#ffffff"
+                    scale: 2, 
+                    useCORS: true, 
+                    logging: false, 
+                    backgroundColor: "#ffffff",
+                    
+                    //   🪄  FIX - 2  :  Force The Tool To Simulate a 1920px Desktop Monitor . 
+                    //   This Permanently Stops Text From Wrapping & Overlapping On Mobile !!
+                    windowWidth: 1920,
+                    windowHeight: 1080
                 });
                 
                 const imgData = canvas.toDataURL('image/jpeg', 0.95);
@@ -648,13 +688,16 @@
                 pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
             }
 
-            //   Restore  Scale
+            //   Restore  Scale and Turn OFF the PDF Mode (brings glassmorphism back!)
             container.style.transform = 'scale(calc(100vw / 1920))';
+            document.body.classList.remove('pdf-export-mode');
+            
             pdf.save('Lakshmi  Naturopathy  Presentation.pdf');
             
             btn.innerHTML = "🪄   Download  Presentation   🪄";
             btn.style.pointerEvents = "auto";
         }
+        
     </script>
 </body>
 </html>
