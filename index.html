@@ -390,21 +390,27 @@
     <button class="download-btn" id="dwn-btn" onclick="generatePDF()">🪄   Download  Presentation   🪄</button>
 
 
-    <!--   PRESENTATION  MASTER  CONTAINER   (  Hidden  Initially  )   -->
+    <!--   ======================================================================================================
+                      🪄   PRESENTATION  MASTER  CONTAINER   🪄
+                      This Holds All  12 Slides .  It is Hidden Until The Terminal Sequence Finishes .
+                      All Weird  [ span ]  Artifacts Have Been Completely Removed !!
+           ======================================================================================================   -->
     <div id="presentation-master-wrapper">
         <div id="presentation-container">
 
-
-            <!--   SLIDE - 1   -->
+            <!--   SLIDE - 1  :  TITLE SLIDE   -->
             <div class="slide slide-1">
+                <!--   Aesthetic  Background  Elements   -->
                 <div class="watercolor-blob-tl"></div>
                 <div class="watercolor-blob-br"></div>
                 <div class="gold-line-tl"></div>
                 <div class="gold-line-br"></div>
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="">
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="">
+                
                 <div class="s1-text">
-                    <h1>Kulranjan<br>Mukherjee<br></h1>
+                    <!--   Removed The Extra  <br>  Tag That Was Messing Up The Spacing   -->
+                    <h1>Kulranjan<br>Mukherjee</h1>
                     <h3>THE  ARCHITECT  OF  INDIAN  NATUROPATHY</h3>
                 </div>
                 <div class="s1-footer">
@@ -415,79 +421,80 @@
             </div>
 
 
-            <!--   SLIDE - 2   -->
-            <!--   SLIDE - 2   -->
+            <!--   SLIDE - 2  :  B & W  PORTRAIT   -->
             <div class="slide slide-2">
                 <div class="s2-img-box">
-                    <!--   🪄  Added  &sat=-100  To The  URL  To Force The Server To Send a True  Black & White  Image   🪄   -->
+                    <!--   🪄  &sat=-100  Forces The Server To Send a True  Black & White  Image   -->
                     <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=800&q=80&sat=-100" crossorigin="anonymous" alt="Vintage Scholar" class="s2-img">
                 </div>
                 <div class="s2-text">
                     <h2>Kulranjan  Mukherjee</h2>
                     <h4>Nature  Cure  Pioneer</h4>
-                    <p>Nature Cure is Strongest When it Looks Calm on The Outside and Disciplined on The Inside .</p>
+                    <p>Nature Cure is Strongest When it Looks Calm on the Outside and Disciplined on the Inside .</p>
                 </div>
             </div>
 
 
-            <!--   SLIDE - 3   -->
+            <!--   SLIDE - 3  :  WHY HE MATTERS   -->
             <div class="slide slide-3">
                 <div class="watercolor-blob-tl" style="opacity: 0.5;"></div>
                 <div class="gold-line-br" style="opacity: 0.5;"></div>
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="" style="opacity: 0.4;">
-                <h2 class="s3-title">Why His Name Remains Relevant</h2>
+                <h2 class="s3-title">Why  His  Name  Remains  Relevant</h2>
+                
+                <!--   Scrubbed All  [ span ]  Tags From Paragraphs Below   -->
                 <div class="s3-grid">
                     <div class="s3-card">
-                        <h3>Foundational Revival Voice</h3>
-                        <p>Open sources on the history of Indian naturopathy consistently place him among the revival figures who helped the system spread in Bengal and beyond[span_0](start_span)[span_0](end_span).</p>
+                        <h3>Foundational  Revival  Voice</h3>
+                        <p>Open Sources on the History of Indian Naturopathy Consistently Place him Among the Revival Figures Who Helped the System Spread in Bengal and Beyond .</p>
                     </div>
                     <div class="s3-card">
-                        <h3>Writer of Practical Texts</h3>
-                        <p>His books did not stop at mere theory. They tried to turn Nature Cure into daily practice—focusing heavily on diet, water, sunlight, fasting, and routine[span_1](start_span)[span_1](end_span).</p>
+                        <h3>Writer  of  Practical  Texts</h3>
+                        <p>His Books did not Stop at Mere Theory .  They Tried to Turn Nature Cure into Daily  Practice — Focusing  Heavily on  Diet ,  Water ,  Sunlight ,  Fasting ,  and Routine .</p>
                     </div>
                     <div class="s3-card">
-                        <h3>BNYS Curriculum Pillar</h3>
-                        <p>University syllabi still list his name in the history of Indian naturopaths, meaning students continue meeting him as part of the subject itself[span_2](start_span)[span_2](end_span).</p>
+                        <h3>BNYS  Curriculum  Pillar</h3>
+                        <p>University Syllabi Still List his Name in the History of Indian Naturopaths ,  Meaning Students Continue Meeting him as Part of the Subject Itself .</p>
                     </div>
                 </div>
             </div>
 
 
-            <!--   SLIDE - 4   -->
+            <!--   SLIDE - 4  :  TIMELINE   -->
             <div class="slide slide-4">
                 <div class="s4-glass-panel">
-                    <h2 class="s4-title">The Evolution of the Movement</h2>
+                    <h2 class="s4-title">The  Evolution  of  the  Movement</h2>
                     <div class="s4-timeline">
                         <div class="s4-line"></div>
-                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">1894</div><div class="s4-desc">Louis Kuhne's book was translated into Telugu, helping revive interest in Nature Cure[span_3](start_span)[span_3](end_span).</div></div>
-                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">1904</div><div class="s4-desc">Hindi and Urdu translations broadened the reach further[span_4](start_span)[span_4](end_span).</div></div>
-                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">Mid-1900s</div><div class="s4-desc">Indian naturopathy grew rapidly in Bengal, Maharashtra, Gujarat, Andhra, and UP[span_5](start_span)[span_5](end_span).</div></div>
-                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">BNYS Era</div><div class="s4-desc">Kulranjan Mukherjee appears among the core Indian naturopaths taught in history units[span_6](start_span)[span_6](end_span).</div></div>
+                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">1894</div><div class="s4-desc">Louis Kuhne's book was translated into Telugu, helping revive interest in Nature Cure.</div></div>
+                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">1904</div><div class="s4-desc">Hindi and Urdu translations broadened the reach further.</div></div>
+                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">Mid-1900s</div><div class="s4-desc">Indian naturopathy grew rapidly in Bengal, Maharashtra, Gujarat, Andhra, and UP.</div></div>
+                        <div class="s4-node"><div class="s4-dot"></div><div class="s4-year">BNYS Era</div><div class="s4-desc">Kulranjan Mukherjee appears among the core Indian naturopaths taught in history units.</div></div>
                     </div>
                 </div>
             </div>
 
 
-            <!--   SLIDE - 5   -->
+            <!--   SLIDE - 5  :  BOOKS   -->
             <div class="slide slide-5">
                 <div class="watercolor-blob-br" style="opacity: 0.5;"></div>
                 <div class="gold-line-tl" style="opacity: 0.5;"></div>
-                <h2 class="s5-title">The Practical Texts</h2>
+                <h2 class="s5-title">The  Practical  Texts</h2>
                 <div class="s5-container">
-                    <div class="s5-book"><div class="s5-book-top"></div><div class="s5-book-content"><h3>Abhinav Prakartik Chikitsa</h3><span class="s5-year">Published: 1947</span><p>A text mapping Nature Cure into routine. It covers constipation, bath therapy, mud packs, air baths, sunlight, fasting, massage, and exercise[span_7](start_span)[span_7](end_span).</p></div></div>
-                    <div class="s5-book"><div class="s5-book-top"></div><div class="s5-book-content"><h3>Dainandin Rogon Ki Prakritik Chikitsa</h3><span class="s5-year">Published: 1947</span><p>Frequently cited in reading lists as part of an early Hindi-language effort to make Nature Cure highly useful to ordinary readers[span_8](start_span)[span_8](end_span).</p></div></div>
-                    <div class="s5-book"><div class="s5-book-top"></div><div class="s5-book-content"><h3>Protective Foods in Health</h3><span class="s5-year">Published: 1961</span><p>An English book on diet therapy. The title reflects his emphasis on food as a protective, not just a filling, element[span_9](start_span)[span_9](end_span).</p></div></div>
+                    <div class="s5-book"><div class="s5-book-top"></div><div class="s5-book-content"><h3>Abhinav  Prakartik  Chikitsa</h3><span class="s5-year">Published  : 1947</span><p>A text mapping Nature Cure into routine. It covers constipation, bath therapy, mud packs, air baths, sunlight, fasting, massage, and exercise.</p></div></div>
+                    <div class="s5-book"><div class="s5-book-top"></div><div class="s5-book-content"><h3>Dainandin  Rogon  Ki  Prakritik  Chikitsa</h3><span class="s5-year">Published  : 1947</span><p>Frequently cited in reading lists as part of an early Hindi-language effort to make Nature Cure highly useful to ordinary readers.</p></div></div>
+                    <div class="s5-book"><div class="s5-book-top"></div><div class="s5-book-content"><h3>Protective  Foods  in  Health</h3><span class="s5-year">Published  : 1961</span><p>An English book on diet therapy. The title reflects his emphasis on food as a protective, not just a filling, element.</p></div></div>
                 </div>
             </div>
 
 
-            <!--   SLIDE - 6   -->
+            <!--   SLIDE - 6  :  NATURE CURE LOOP   -->
             <div class="slide slide-6">
                 <div class="watercolor-blob-tl" style="opacity: 0.6;"></div>
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="" style="opacity: 0.5;">
                 <div class="s6-left">
-                    <h2>The Nature Cure Loop</h2>
-                    <p>Kulranjan Mukherjee emphasized simple methods with clear logic[span_10](start_span)[span_10](end_span). By seamlessly integrating these four elements, he created a highly visual and practical loop for maintaining promotive health[span_11](start_span)[span_11](end_span).</p>
+                    <h2>The  Nature  Cure  Loop</h2>
+                    <p>Kulranjan Mukherjee emphasized simple methods with clear logic. By seamlessly integrating these four elements, he created a highly visual and practical loop for maintaining promotive health.</p>
                 </div>
                 <div class="s6-right">
                     <div class="s6-circle s6-c1">Diet</div><div class="s6-circle s6-c2">Water</div><div class="s6-circle s6-c3">Sun</div><div class="s6-circle s6-c4">Routine</div>
@@ -495,88 +502,89 @@
             </div>
 
 
-            <!--   SLIDE - 7   -->
+            <!--   SLIDE - 7  :  MODERN APPROACH   -->
             <div class="slide slide-7">
-                <h2 class="s7-title">A Modern Approach to Ancient Wisdom</h2>
+                <h2 class="s7-title">A  Modern  Approach  to  Ancient  Wisdom</h2>
                 <div class="s7-grid">
-                    <div class="s7-item"><h3>Scientific Basis</h3><p>His Nature Cure writing was consistently described as giving a firm and scientific basis to the healing system[span_12](start_span)[span_12](end_span).</p></div>
-                    <div class="s7-item"><h3>Preventive Focus</h3><p>Health was not only about curing existing disease; it was foundationally about preventing it[span_13](start_span)[span_13](end_span).</p></div>
-                    <div class="s7-item"><h3>Promotive Health</h3><p>Food, water, light, rest, and routine were treated as active tools that actively build health[span_14](start_span)[span_14](end_span).</p></div>
-                    <div class="s7-item"><h3>Practical Method</h3><p>He strongly emphasized simple methods that readers could actually follow in their daily routines[span_15](start_span)[span_15](end_span).</p></div>
+                    <div class="s7-item"><h3>Scientific  Basis</h3><p>His Nature Cure writing was consistently described as giving a firm and scientific basis to the healing system.</p></div>
+                    <div class="s7-item"><h3>Preventive  Focus</h3><p>Health was not only about curing existing disease; it was foundationally about preventing it.</p></div>
+                    <div class="s7-item"><h3>Promotive  Health</h3><p>Food, water, light, rest, and routine were treated as active tools that actively build health.</p></div>
+                    <div class="s7-item"><h3>Practical  Method</h3><p>He strongly emphasized simple methods that readers could actually follow in their daily routines.</p></div>
                 </div>
             </div>
 
             
-            <!--   SLIDE - 8   -->
+            <!--   SLIDE - 8  :  BNYS TRAINING   -->
             <div class="slide slide-8">
                 <div class="s8-glass-panel">
-                    <h2>Alignment with BNYS Training</h2>
+                    <h2>Alignment  With  BNYS  Training</h2>
                     <div class="s8-list">
-                        <div class="s8-row"><h4>Nutrition as Therapy</h4><p>Protective foods and a thoughtful diet are not extras; they are part of the core method[span_16](start_span)[span_16](end_span).</p></div>
-                        <div class="s8-row"><h4>Hydrotherapy</h4><p>Water is treated as a precise therapeutic medium, not just a comfort[span_17](start_span)[span_17](end_span).</p></div>
-                        <div class="s8-row"><h4>Elemental Application</h4><p>Natural elements like sunlight, air, and mud are used as measurable interventions in practice[span_18](start_span)[span_18](end_span).</p></div>
-                        <div class="s8-row"><h4>Lifestyle Discipline</h4><p>Rest, timing, hygiene, exercise, and breathing complete the treatment picture[span_19](start_span)[span_19](end_span).</p></div>
+                        <div class="s8-row"><h4>Nutrition  as  Therapy</h4><p>Protective foods and a thoughtful diet are not extras; they are part of the core method.</p></div>
+                        <div class="s8-row"><h4>Hydrotherapy</h4><p>Water is treated as a precise therapeutic medium, not just a comfort.</p></div>
+                        <div class="s8-row"><h4>Elemental  Application</h4><p>Natural elements like sunlight, air, and mud are used as measurable interventions in practice.</p></div>
+                        <div class="s8-row"><h4>Lifestyle  Discipline</h4><p>Rest, timing, hygiene, exercise, and breathing complete the treatment picture.</p></div>
                     </div>
                 </div>
             </div>
 
             
-            <!--   SLIDE - 9   -->
+            <!--   SLIDE - 9  :  SYLLABUS   -->
             <div class="slide slide-9">
                 <div class="watercolor-blob-br" style="opacity: 0.6;"></div>
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="" style="opacity: 0.5;">
                 <div class="s9-left">
-                    <h2>Anchored in the Syllabus</h2>
-                    <p>Kulranjan Mukherjee is not merely a historical footnote[span_20](start_span)[span_20](end_span). BNYS syllabi across India, including the University of Patanjali, repeat the pattern of placing him among the foundational names students must know[span_21](start_span)[span_21](end_span).</p>
+                    <h2>Anchored  in  the  Syllabus</h2>
+                    <p>Kulranjan Mukherjee is not merely a historical footnote. BNYS syllabi across India, including the University of Patanjali, repeat the pattern of placing him among the foundational names students must know.</p>
                     <div class="s9-quote">"He is not just a historical name; he is a curriculum name."</div>
                 </div>
                 <div class="s9-right">
-                    <div class="s9-table-header">Curriculum Placement</div>
-                    <div class="s9-table-row"><h3>Kulranjan Mukherjee</h3><p>Philosophy and History of Indian Naturopaths (BNYS I-Year)[span_22](start_span)[span_22](end_span)</p></div>
+                    <div class="s9-table-header">Curriculum  Placement</div>
+                    <div class="s9-table-row"><h3>Kulranjan  Mukherjee</h3><p>Philosophy and History of Indian Naturopaths (BNYS I-Year)</p></div>
                 </div>
             </div>
 
             
-            <!--   SLIDE - 10   -->
+            <!--   SLIDE - 10  :  PATANJALI IMAGE   -->
             <div class="slide slide-10">
                 <div class="s10-image"></div>
                 <div class="s10-content">
-                    <h2>University of Patanjali & The Mukherjee Legacy</h2>
-                    <p>The University of Patanjali in Haridwar Stands as a Modern Testament to Dr. Mukherjee's Early Vision .  His Relentless Research to Transform Nature Cure From a Folk Tradition into a Structured ,  Physiological Science Laid The Exact Groundwork That Patanjali Now Institutionalizes .  Today ,  The BNYS Program Embodies his Core Belief :  Natural Healing must be Studied and Practiced With Supreme Clinical Rigor .</p>
+                    <h2>University  of  Patanjali  &  The  Mukherjee  Legacy</h2>
+                    <!--   Fixed Weird Punctuation Spaces  ( . -> . )   -->
+                    <p>The University of Patanjali in Haridwar stands as a modern testament to Dr. Mukherjee's early vision. His relentless research to transform Nature Cure from a folk tradition into a structured, physiological science laid the exact groundwork that Patanjali now institutionalizes. Today, the BNYS program embodies his core belief: natural healing must be studied and practiced with supreme clinical rigor.</p>
                 </div>
             </div>
             
 
-            <!--   SLIDE - 11   -->
+            <!--   SLIDE - 11  :  LEGACY   -->
             <div class="slide slide-11">
                 <div class="s11-frame">
-                    <h2>The Continuing Legacy</h2>
+                    <h2>The  Continuing  Legacy</h2>
                     <h1>"His real legacy is not a single dramatic event; it is a body of ideas that kept returning to classrooms, books, and curriculum lists."</h1>
                     <p>Pioneer of the Indian Naturopathy Revival</p>
                 </div>
             </div>
 
             
-            <!--   SLIDE - 12   -->
+            <!--   SLIDE - 12  :  THANK YOU   -->
             <div class="slide slide-12">
                 <div class="watercolor-blob-tl"></div>
                 <div class="watercolor-blob-br"></div>
                 <div class="gold-line-br"></div>
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="" style="opacity: 0.8;">
                 <div class="s12-left">
-                    <h2>Thank You.</h2>
-                    <h3>Return to balance.</h3>
+                    <h2>Thank  You  .</h2>
+                    <h3>Return to balance .</h3>
                     <div class="s12-box">
-                        <p><strong>Presentation By:</strong> Laxmi Raj</p>
-                        <p><strong>For:</strong> Physiology of Nature Cure</p>
-                        <p><strong>At:</strong> University of Patanjali (Haridwar)</p>
+                        <p><strong>Presentation By :</strong> Laxmi Raj</p>
+                        <p><strong>For :</strong> Physiology of Nature Cure</p>
+                        <p><strong>At :</strong> University of Patanjali (Haridwar)</p>
                     </div>
                 </div>
                 <div class="s12-right">
                     <h4>References</h4>
-                    <div class="s12-ref">Wellcome Collection — Catalogue record for Protective Foods in Health and Disease (1961)[span_25](start_span)[span_25](end_span).</div>
-                    <div class="s12-ref">University of Patanjali BNYS I-year syllabus — Kulranjan Mukherjee in history units[span_26](start_span)[span_26](end_span).</div>
-                    <div class="s12-ref">History pages on Nature-Cure revival naming him among the foundation figures[span_27](start_span)[span_27](end_span).</div>
+                    <div class="s12-ref">Wellcome Collection — Catalogue record for Protective Foods in Health and Disease (1961).</div>
+                    <div class="s12-ref">University of Patanjali BNYS I-year syllabus — Kulranjan Mukherjee in history units.</div>
+                    <div class="s12-ref">History pages on Nature-Cure revival naming him among the foundation figures.</div>
                 </div>
             </div>
 
@@ -658,19 +666,28 @@
         //   <---   3.  PDF  GENERATOR   --->
         async function generatePDF() {
             const btn = document.getElementById('dwn-btn');
-            btn.innerHTML = "🪄   Compiling  PDF   🪄";
+            btn.innerHTML = "🎊   Compiling  PDF   🎊";
             btn.style.pointerEvents = "none";
             
-            //   🪄  FIX - 1  :  Turn On The Solid White Backgrounds So The PDF is Readable
-            document.body.classList.add('pdf-export-mode');
-
+            //   🪄  FIX - 1  :  Wait For Custom Fonts To Fully Load So Text Doesn't Overlap
+            await document.fonts.ready;
+            
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: [1280, 720] });
             const slides = document.querySelectorAll('.slide');
             const container = document.getElementById('presentation-container');
 
-            //   Temporarily  Unscale  For  HD  Capture
+            //   🪄  FIX - 2  :  Save Original Body Width ,  Then Force The Entire Body To  Desktop Size
+            const originalBodyWidth = document.body.style.width;
+            document.body.style.width = '1920px';
             container.style.transform = 'none';
+
+            //   🪄  FIX - 3  :  THE MAGIC DELAY !!  Wait  200 ms  For The Browser To Redraw The  Un - Squished  Text
+            //   Without This ,  The Camera Snaps a Picture of The Overlapping Mobile Text !!
+            await new Promise(resolve => setTimeout(resolve, 200));
+
+            //   Ensure Window is Scrolled To Top To Prevent Rendering Glitches
+            window.scrollTo(0, 0);
 
             for (let i = 0; i < slides.length; i++) {
                 const canvas = await html2canvas(slides[i], { 
@@ -678,11 +695,7 @@
                     useCORS: true, 
                     logging: false, 
                     backgroundColor: "#ffffff",
-                    
-                    //   🪄  FIX - 2  :  Force The Tool To Simulate a 1920px Desktop Monitor . 
-                    //   This Permanently Stops Text From Wrapping & Overlapping On Mobile !!
-                    windowWidth: 1920,
-                    windowHeight: 1080
+                    letterRendering: true             //   🪄  FIX - 4  :  Forces Stricter Letter Spacing Calculations
                 });
                 
                 const imgData = canvas.toDataURL('image/jpeg', 0.95);
@@ -690,10 +703,11 @@
                 pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
             }
 
-            //   Restore  Scale and Turn OFF the PDF Mode (brings glassmorphism back!)
+            //   Restore Mobile Scale & Original Width
             container.style.transform = 'scale(calc(100vw / 1920))';
-            document.body.classList.remove('pdf-export-mode');
+            document.body.style.width = originalBodyWidth;
             
+            //   File Saved Perfectly With Requested Spacing & Dashes !!
             pdf.save('Lakshmi  Naturopathy  Presentation.pdf');
             
             btn.innerHTML = "🪄   Download  Presentation   🪄";
