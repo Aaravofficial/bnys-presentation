@@ -669,6 +669,9 @@
             btn.innerHTML = "🎊   Compiling  PDF   🎊";
             btn.style.pointerEvents = "none";
             
+            //   🪄  THE  MISSING  PIECE - 1  :  Turn On The Frosted Glass Illusion Class So The PDF is Readable !!
+            document.body.classList.add('pdf-export-mode');
+            
             //   🪄  FIX - 1  :  Wait For Custom Fonts To Fully Load So Text Doesn't Overlap
             await document.fonts.ready;
             
@@ -682,9 +685,9 @@
             document.body.style.width = '1920px';
             container.style.transform = 'none';
 
-            //   🪄  FIX - 3  :  THE MAGIC DELAY !!  Wait  200 ms  For The Browser To Redraw The  Un - Squished  Text
+            //   🪄  FIX - 3  :  THE MAGIC DELAY !!  Wait  250 ms  For The Browser To Redraw The  Un - Squished  Text
             //   Without This ,  The Camera Snaps a Picture of The Overlapping Mobile Text !!
-            await new Promise(resolve => setTimeout(resolve, 200));
+            await new Promise(resolve => setTimeout(resolve, 250));
 
             //   Ensure Window is Scrolled To Top To Prevent Rendering Glitches
             window.scrollTo(0, 0);
@@ -707,8 +710,11 @@
             container.style.transform = 'scale(calc(100vw / 1920))';
             document.body.style.width = originalBodyWidth;
             
-            //   File Saved Perfectly With Requested Spacing & Dashes !!
-            pdf.save('Lakshmi  Naturopathy  Presentation.pdf');
+            //   🪄  THE MISSING PIECE 2 :  Turn OFF the Frosted Glass Illusion class to bring real blur back to the website !!
+            document.body.classList.remove('pdf-export-mode');
+            
+            //   File Saved Perfectly !!
+            pdf.save('Naturopathy  Presentation  By  Lakshmi.pdf');
             
             btn.innerHTML = "🪄   Download  Presentation   🪄";
             btn.style.pointerEvents = "auto";
