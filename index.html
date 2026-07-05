@@ -13,7 +13,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* --- GLOBAL & WRAPPER STYLES --- */
+        /*   <---   GLOBAL  &  WRAPPER  STYLES   --->   */
         body {
             background-color: #0d1117;
             font-family: 'Montserrat', sans-serif;
@@ -22,7 +22,8 @@
             color: #c9d1d9;
         }
 
-        /* --- AMBIENT GLOWS --- */
+
+        /*   <---   AMBIENT  GLOWS  --->   */
         .ambient-glow {
             position: fixed; border-radius: 50%; filter: blur(120px); z-index: 0;
             animation: float 15s infinite alternate ease-in-out;
@@ -35,7 +36,8 @@
             100% { transform: translate(30px, 50px) scale(1.1); }
         }
 
-        /* --- THE TERMINAL UI --- */
+
+        /*   <---   THE  TERMINAL  UI   --->   */
         #ui-wrapper {
             position: relative;
             z-index: 10;
@@ -48,6 +50,7 @@
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
+
         .glass-panel {
             background: rgba(22, 27, 34, 0.6);
             backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
@@ -58,31 +61,38 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
         .glass-panel:hover {
             transform: translateY(-5px);
             box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 20px rgba(88, 166, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.15);
         }
 
+
         .panel-header {
             background: rgba(0,0,0,0.3); padding: 12px 20px;
             display: flex; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
+
         .dots { display: flex; gap: 8px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
         .panel-title { margin-left: 15px; font-size: 13px; color: #8b949e; letter-spacing: 1px; }
 
+
         .code-container {
             height: 400px; overflow-y: auto; padding: 20px;
             background: rgba(13, 17, 23, 0.7);
         }
+
         .code-container::-webkit-scrollbar { width: 8px; }
         .code-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         .code-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
-        
+
+
         pre { margin: 0; }
         code { font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; color: #e6edf3; white-space: pre-wrap; }
+
 
         .run-btn {
             margin-top: 30px;
@@ -93,23 +103,28 @@
             transition: all 0.3s ease; position: relative; overflow: hidden;
             letter-spacing: 2px; text-transform: uppercase;
         }
+
         .run-btn::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(88, 166, 255, 0.2), transparent);
             transition: left 0.5s ease;
         }
+
         .run-btn:hover {
             background: rgba(88, 166, 255, 0.1); box-shadow: 0 0 20px rgba(88, 166, 255, 0.4); transform: translateY(-2px);
         }
+
         .run-btn:hover::before { left: 100%; }
 
-        /* --- STATUS MODAL --- */
+
+        /*   <---   STATUS  MODAL   --->   */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
             display: flex; justify-content: center; align-items: center;
             z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
         }
+
         .modal-overlay.active { opacity: 1; visibility: visible; }
         
         .status-box {
@@ -118,6 +133,7 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(88, 166, 255, 0.2);
             transform: scale(0.9); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
         .modal-overlay.active .status-box { transform: scale(1); }
 
         .spinner {
@@ -130,9 +146,10 @@
 
         .status-text { font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #79c0ff; min-height: 20px; }
 
-        /* --- PRESENTATION WRAPPER (Hidden Initially) --- */
+
+        /*   <---   PRESENTATION  WRAPPER   (  Hidden  Initially  )   --->   */
         #presentation-master-wrapper {
-            display: none; /* Hidden until sequence finishes */
+            display: none;              /*   Hidden Until Sequence Finishes   */
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
@@ -140,6 +157,7 @@
             width: 100%;
             background: #333;
         }
+
 
         #presentation-container {
             width: 1920px;
@@ -149,7 +167,8 @@
             transform: scale(calc(100vw / 1920)); 
         }
 
-        /* --- DOWNLOAD BUTTON --- */
+
+        /*   <---   DOWNLOAD  BUTTON   --->   */
         .download-btn {
             position: fixed; top: 30px; right: 30px;
             background-color: #2c4435; color: white; border: 2px solid #c9a255;
@@ -158,21 +177,26 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: 0.5s ease; font-weight: 600;
             opacity: 0; visibility: hidden; transform: translateY(-20px);
         }
+
         .download-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
         .download-btn:active { transform: scale(0.95); }
         @media print { .download-btn { display: none !important; } }
         .hide-for-pdf { display: none !important; }
 
-        /* =========================================
-           PRESENTATION INTERNAL STYLES
-           ========================================= */
+
+        /*   ============================================================
+                        🪄   PRESENTATION  INTERNAL  STYLES   🪄
+             ============================================================   */
+        
         .slide {
             width: 1920px; height: 1080px; position: relative; overflow: hidden;
             display: flex; background-color: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             page-break-inside: avoid; page-break-after: always;
         }
+
         .slide:last-child { page-break-after: avoid; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
 
         .watercolor-blob-tl { position: absolute; top: -250px; left: -150px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(168,213,186,0.6) 0%, rgba(255,255,255,0) 70%); z-index: 1; pointer-events: none; }
         .watercolor-blob-br { position: absolute; bottom: -250px; right: -150px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(168,213,186,0.5) 0%, rgba(255,255,255,0) 70%); z-index: 1; pointer-events: none; }
@@ -182,12 +206,14 @@
         .leaf-top-left { top: -30px; left: -30px; transform: rotate(110deg); }
         .leaf-bottom-right { bottom: -30px; right: -30px; transform: rotate(-70deg); }
 
+
         .slide-1 { flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .s1-text { z-index: 5; }
         .s1-text h1 { font-size: 95px; color: #435c4c; line-height: 1.1; margin-bottom: 20px; }
         .s1-text h3 { font-size: 30px; color: #555; font-weight: 300; margin-bottom: 60px; }
         .s1-footer { display: flex; gap: 60px; justify-content: center; font-size: 22px; color: #435c4c; font-weight: 500; }
-        
+
+
         .slide-2 { background-color: #111412; color: #e8e8e8; padding: 115px; justify-content: space-between; align-items: center; border: 30px solid #1a241e; }
         .s2-img-box { width: 700px; height: 800px; border: 2px solid #c9a255; padding: 20px; }
         .s2-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(120%); }
@@ -196,12 +222,14 @@
         .s2-text h4 { font-size: 25px; color: #a8d5ba; letter-spacing: 2px; margin-bottom: 40px; text-transform: uppercase; }
         .s2-text p { font-size: 25px; color: #ccc; line-height: 1.8; font-style: italic; border-left: 3px solid #555; padding-left: 30px; }
 
+
         .slide-3 { flex-direction: column; padding: 150px; justify-content: center; }
         .s3-title { font-size: 65px; color: #2c4435; margin-bottom: 75px; text-align: center; z-index: 5; }
         .s3-grid { display: flex; gap: 60px; z-index: 5; }
         .s3-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border: 2px solid rgba(168,213,186,0.5); padding: 60px; width: 500px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .s3-card h3 { font-size: 35px; color: #355240; margin-bottom: 20px; }
         .s3-card p { font-size: 22px; color: #555; line-height: 1.7; }
+
 
         .slide-4 { background: url('https://images.unsplash.com/photo-1542382156909-9ae37b3f56fd?auto=format&fit=crop&w=1920&q=80') center/cover; justify-content: center; align-items: center; padding: 100px; }
         .s4-glass-panel { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(12px); border: 2px solid rgba(255,255,255,0.6); width: 1600px; height: 800px; border-radius: 20px; padding: 75px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; }
@@ -213,6 +241,7 @@
         .s4-year { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #111; margin-bottom: 20px; }
         .s4-desc { font-size: 20px; color: #222; font-weight: 500; text-shadow: 0 1px 5px rgba(255,255,255,0.8); line-height: 1.6; }
 
+
         .slide-5 { padding: 115px; flex-direction: column; align-items: center; }
         .s5-title { font-size: 65px; color: #2c4435; margin-bottom: 60px; z-index: 5; }
         .s5-container { display: flex; gap: 75px; height: 600px; width: 1600px; z-index: 5; }
@@ -223,6 +252,7 @@
         .s5-year { font-size: 20px; color: #c9a255; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; display: block; }
         .s5-book-content p { font-size: 22px; color: #666; line-height: 1.6; }
 
+
         .slide-6 { display: flex; align-items: center; justify-content: space-between; padding: 150px; }
         .s6-left { width: 800px; z-index: 5; }
         .s6-left h2 { font-size: 70px; color: #2c4435; margin-bottom: 30px; }
@@ -230,7 +260,8 @@
         .s6-right { width: 800px; position: relative; height: 700px; z-index: 5; }
         .s6-circle { position: absolute; width: 250px; height: 250px; background: rgba(255,255,255,0.8); backdrop-filter: blur(5px); border: 4px solid #a8d5ba; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-family: 'Playfair Display', serif; font-size: 42px; color: #2c4435; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .s6-c1 { top: 0; left: 275px; } .s6-c2 { top: 225px; right: 0; } .s6-c3 { bottom: 0; left: 275px; } .s6-c4 { top: 225px; left: 0; }
-        
+
+
         .slide-7 { background-color: #181d19; color: #fff; padding: 115px; flex-direction: column; justify-content: center; }
         .s7-title { font-size: 65px; color: #c9a255; margin-bottom: 75px; text-align: center; }
         .s7-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 75px; width: 1600px; margin: 0 auto; }
@@ -238,6 +269,7 @@
         .s7-item h3 { font-size: 35px; color: #e8f5e9; margin-bottom: 20px; }
         .s7-item p { font-size: 22px; color: #aaa; line-height: 1.7; }
 
+        
         .slide-8 { background: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 115px; align-items: center; justify-content: flex-end; }
         .s8-glass-panel { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); width: 1100px; padding: 75px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         .s8-glass-panel h2 { font-size: 60px; color: #112211; margin-bottom: 45px; text-shadow: 0 2px 10px rgba(255,255,255,0.8); }
@@ -246,6 +278,7 @@
         .s8-row h4 { font-size: 26px; color: #2c4435; margin-bottom: 10px; }
         .s8-row p { font-size: 22px; color: #222; font-weight: 500; }
 
+        
         .slide-9 { padding: 150px; display: flex; align-items: center; }
         .s9-left { width: 850px; padding-right: 100px; z-index: 5; }
         .s9-left h2 { font-size: 65px; color: #2c4435; margin-bottom: 30px; line-height: 1.2; }
@@ -258,6 +291,7 @@
         .s9-table-row h3 { font-size: 35px; color: #2c4435; margin-bottom: 10px; }
         .s9-table-row p { font-size: 22px; color: #666; }
 
+        
         .slide-10 { flex-direction: column; }
         .s10-image { width: 100%; height: 600px; background: url('https://images.unsplash.com/photo-1590393802688-e160e1d1eb97?auto=format&fit=crop&w=1920&q=80') center/cover; position: relative; }
         .s10-image::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 200px; background: linear-gradient(to top, #fff, transparent); }
@@ -265,6 +299,7 @@
         .s10-content h2 { font-size: 60px; color: #2c4435; margin-bottom: 20px; }
         .s10-content p { font-size: 25px; color: #555; line-height: 1.7; max-width: 1300px; margin: 0 auto; }
 
+        
         .slide-11 { background-color: #0f1110; color: #fff; justify-content: center; align-items: center; padding: 100px; }
         .s11-frame { border: 2px solid #334238; padding: 100px; text-align: center; width: 1500px; position: relative; }
         .s11-frame::before { content: ''; position: absolute; top: -3px; left: 30%; right: 30%; height: 4px; background: #c9a255; }
@@ -273,6 +308,7 @@
         .s11-frame h1 { font-size: 65px; margin-bottom: 40px; line-height: 1.3; font-style: italic; font-weight: 400; color: #f4f4f4; }
         .s11-frame p { font-size: 24px; color: #888; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
+        
         .slide-12 { padding: 150px; display: flex; justify-content: space-between; align-items: center; }
         .s12-left { width: 800px; z-index: 5; }
         .s12-left h2 { font-size: 85px; color: #2c4435; margin-bottom: 20px; line-height: 1; }
@@ -282,16 +318,20 @@
         .s12-right { width: 800px; z-index: 5; }
         .s12-right h4 { font-size: 30px; color: #2c4435; margin-bottom: 30px; letter-spacing: 2px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
         .s12-ref { font-size: 20px; color: #666; margin-bottom: 25px; line-height: 1.5; padding-left: 20px; border-left: 3px solid #eee; }
+
         
     </style>
+    
 </head>
 <body>
 
-    <!-- AMBIENT BACKGROUND GLOWS -->
+    
+    <!--   AMBIENT  BACKGROUND  GLOWS   -->
     <div class="ambient-glow glow-1"></div>
     <div class="ambient-glow glow-2"></div>
 
-    <!-- TERMINAL UI WRAPPER -->
+
+    <!--   TERMINAL  UI  WRAPPER   -->
     <div id="ui-wrapper">
         <div class="glass-panel">
             <div class="panel-header">
@@ -300,16 +340,17 @@
                     <div class="dot yellow"></div>
                     <div class="dot green"></div>
                 </div>
-                <div class="panel-title">index.html — GitHub Repository</div>
+                <div class="panel-title">🪄   NATUROPATHY  PRESENTATION   🪄</div>
             </div>
             <div class="code-container">
-                <pre><code id="code-display">Loading Source...</code></pre>
+                <pre><code id="code-display">Loading  Source   🪄  .....</code></pre>
             </div>
         </div>
-        <button class="run-btn" onclick="startExecution()">INITIALISE RUN SEQUENCE</button>
+        <button class="run-btn" onclick="startExecution()">🪄   CLICK  HERE   🪄</button>
     </div>
 
-    <!-- STATUS POP-UP MODAL -->
+
+    <!--   STATUS  POP - UP  MODAL   -->
     <div class="modal-overlay" id="status-modal">
         <div class="status-box">
             <div class="spinner"></div>
@@ -317,14 +358,17 @@
         </div>
     </div>
 
-    <!-- DOWNLOAD BUTTON (Hidden initially) -->
-    <button class="download-btn" id="dwn-btn" onclick="generatePDF()">📥 Download Presentation</button>
 
-    <!-- PRESENTATION MASTER CONTAINER (Hidden initially) -->
+    <!--   DOWNLOAD  BUTTON   (  Hidden  Initially  )   -->
+    <button class="download-btn" id="dwn-btn" onclick="generatePDF()">🪄   Download  Presentation   🪄</button>
+
+
+    <!--   PRESENTATION  MASTER  CONTAINER   (  Hidden  Initially  )   -->
     <div id="presentation-master-wrapper">
         <div id="presentation-container">
 
-            <!-- SLIDE 1 -->
+
+            <!--   SLIDE - 1   -->
             <div class="slide slide-1">
                 <div class="watercolor-blob-tl"></div>
                 <div class="watercolor-blob-br"></div>
@@ -333,7 +377,7 @@
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="">
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="">
                 <div class="s1-text">
-                    <h1>Kulranjan<br>Mukherjee</h1>
+                    <h1>Kulranjan<br><br>Mukherjee</h1>
                     <h3>THE ARCHITECT OF INDIAN NATUROPATHY</h3>
                 </div>
                 <div class="s1-footer">
@@ -343,7 +387,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 2 -->
+
+            <!--   SLIDE - 2   -->
             <div class="slide slide-2">
                 <div class="s2-img-box">
                     <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=800&q=80" crossorigin="anonymous" alt="Vintage Scholar" class="s2-img">
@@ -355,7 +400,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 3 -->
+
+            <!--   SLIDE - 3   -->
             <div class="slide slide-3">
                 <div class="watercolor-blob-tl" style="opacity: 0.5;"></div>
                 <div class="gold-line-br" style="opacity: 0.5;"></div>
@@ -377,7 +423,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 4 -->
+
+            <!--   SLIDE - 4   -->
             <div class="slide slide-4">
                 <div class="s4-glass-panel">
                     <h2 class="s4-title">The Evolution of the Movement</h2>
@@ -391,7 +438,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 5 -->
+
+            <!--   SLIDE - 5   -->
             <div class="slide slide-5">
                 <div class="watercolor-blob-br" style="opacity: 0.5;"></div>
                 <div class="gold-line-tl" style="opacity: 0.5;"></div>
@@ -403,7 +451,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 6 -->
+
+            <!--   SLIDE - 6   -->
             <div class="slide slide-6">
                 <div class="watercolor-blob-tl" style="opacity: 0.6;"></div>
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="" style="opacity: 0.5;">
@@ -416,7 +465,8 @@
                 </div>
             </div>
 
-            <!-- SLIDE 7 -->
+
+            <!--   SLIDE - 7   -->
             <div class="slide slide-7">
                 <h2 class="s7-title">A Modern Approach to Ancient Wisdom</h2>
                 <div class="s7-grid">
@@ -427,7 +477,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 8 -->
+            <!--   SLIDE - 8   -->
             <div class="slide slide-8">
                 <div class="s8-glass-panel">
                     <h2>Alignment with BNYS Training</h2>
@@ -440,7 +490,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 9 -->
+            <!--   SLIDE - 9   -->
             <div class="slide slide-9">
                 <div class="watercolor-blob-br" style="opacity: 0.6;"></div>
                 <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="" style="opacity: 0.5;">
@@ -455,7 +505,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 10 -->
+            <!--   SLIDE - 10   -->
             <div class="slide slide-10">
                 <div class="s10-image"></div>
                 <div class="s10-content">
@@ -464,7 +514,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 11 -->
+            <!--   SLIDE - 11   -->
             <div class="slide slide-11">
                 <div class="s11-frame">
                     <h2>The Continuing Legacy</h2>
@@ -473,7 +523,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 12 -->
+            <!--   SLIDE - 12   -->
             <div class="slide slide-12">
                 <div class="watercolor-blob-tl"></div>
                 <div class="watercolor-blob-br"></div>
@@ -499,31 +549,34 @@
         </div>
     </div>
 
+
     <script>
-        // --- 1. EXTRACT & HIGHLIGHT CODE FOR UI ---
+        
+        //   <---   1.  EXTRACT  &  HIGHLIGHT  CODE  FOR UI   --->
         document.addEventListener("DOMContentLoaded", () => {
             let rawCode = document.getElementById('presentation-container').innerHTML;
             
-            // Format for display
+            //   Format  For  Display
             let formattedCode = rawCode
                 .replace(/</g, '&lt;').replace(/>/g, '&gt;')
-                .replace(/(&lt;\/?)([a-zA-Z0-9]+)/g, '$1<span style="color: #7ee787;">$2</span>') // Green Tags
-                .replace(/([a-zA-Z-]+)=/g, '<span style="color: #79c0ff;">$1</span>=') // Blue Attributes
-                .replace(/(".*?")/g, '<span style="color: #a5d6ff;">$1</span>'); // Light Blue Strings
+                .replace(/(&lt;\/?)([a-zA-Z0-9]+)/g, '$1<span style="color: #7ee787;">$2</span>')         //   Green  Tags
+                .replace(/([a-zA-Z-]+)=/g, '<span style="color: #79c0ff;">$1</span>=')                    //   Blue  Attributes
+                .replace(/(".*?")/g, '<span style="color: #a5d6ff;">$1</span>');                          //   Light  Blue  Strings
                 
             document.getElementById('code-display').innerHTML = formattedCode;
         });
 
-        // --- 2. RUN SEQUENCE & REVEAL ---
+
+        //   <---   2.  RUN  SEQUENCE  &  REVEAL   --->
         function startExecution() {
             const modal = document.getElementById('status-modal');
             const statusText = document.getElementById('status-message');
             const messages = [
                 "", 
-                "Initialising Secure Connection...", 
-                "Looking For Codes...", 
-                "Trying To Run...", 
-                "Ready To Run"
+                "Initialising  Secure  Connection   ☁️  .....", 
+                "Looking  For  Codes   🪄  .....", 
+                "Trying  To  Run   😇  .....", 
+                "Ready  To  Run   🎉  ....."
             ];
             
             modal.classList.add('active');
@@ -537,11 +590,13 @@
                     clearInterval(interval);
                     setTimeout(() => revealPresentation(), 800);
                 }
-            }, 900); // 900ms delay per text change
+            }, 1200);              //   1200 ms  Delay Per Text Change
         }
 
+
         function revealPresentation() {
-            // Hide UI
+            
+            //   Hide  UI
             document.getElementById('status-modal').classList.remove('active');
             const uiWrapper = document.getElementById('ui-wrapper');
             uiWrapper.style.opacity = '0';
@@ -550,25 +605,26 @@
             setTimeout(() => {
                 uiWrapper.style.display = 'none';
                 
-                // Show Presentation
+                //   Show  Presentation
                 const masterWrapper = document.getElementById('presentation-master-wrapper');
                 masterWrapper.style.display = 'block';
-                // Trigger reflow for fade in
+                //   Trigger  Reflow  For  Fade - in
                 void masterWrapper.offsetWidth; 
                 masterWrapper.style.opacity = '1';
 
-                // Wait 3 seconds, then show download button
+                //   Wait  5 Seconds  ,,  Then Show Download Button
                 setTimeout(() => {
                     document.getElementById('dwn-btn').classList.add('show');
-                }, 3000);
+                }, 5000);
 
             }, 800);
         }
 
-        // --- 3. PDF GENERATOR ---
+        
+        //   <---   3.  PDF  GENERATOR   --->
         async function generatePDF() {
             const btn = document.getElementById('dwn-btn');
-            btn.innerHTML = "⏳ Compiling PDF...";
+            btn.innerHTML = "🪄   Compiling  PDF   🪄";
             btn.style.pointerEvents = "none";
             
             const { jsPDF } = window.jspdf;
@@ -576,7 +632,7 @@
             const slides = document.querySelectorAll('.slide');
             const container = document.getElementById('presentation-container');
 
-            // Temporarily unscale for HD capture
+            //   Temporarily  Unscale  For  HD  Capture
             container.style.transform = 'none';
 
             for (let i = 0; i < slides.length; i++) {
@@ -589,11 +645,11 @@
                 pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
             }
 
-            // Restore scale
+            //   Restore  Scale
             container.style.transform = 'scale(calc(100vw / 1920))';
-            pdf.save('Lakshmi Naturopathy Presentation.pdf');
+            pdf.save('Lakshmi  Naturopathy  Presentation.pdf');
             
-            btn.innerHTML = "📥 Download Presentation";
+            btn.innerHTML = "🪄   Download  Presentation   🪄";
             btn.style.pointerEvents = "auto";
         }
     </script>
