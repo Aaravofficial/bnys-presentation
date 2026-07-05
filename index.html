@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kulranjan Mukherjee - Presentation</title>
     
-    <!-- html2pdf Library for 1-Click PDF Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Using standalone libraries for slide-by-slide processing to prevent mobile memory crashes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap');
@@ -15,24 +16,24 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
         }
 
         body {
-            background-color: #555;
+            background-color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
             font-family: 'Montserrat', sans-serif;
             min-width: 1920px; 
             margin: 0;
+            padding: 50px 0;
+            gap: 50px;
         }
 
         #presentation-container {
-            width: 1920px;
-            background: #fff;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 50px; /* Space between slides on web view */
         }
 
         .slide {
@@ -42,15 +43,7 @@
             overflow: hidden;
             display: flex;
             background-color: #fff;
-            
-            /* --- THE BLANK PAGE FIX --- */
-            page-break-inside: avoid;
-            page-break-after: always;
-        }
-
-        /* Prevents an empty page at the very end */
-        .slide:last-child {
-            page-break-after: avoid;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
@@ -71,11 +64,9 @@
             z-index: 9999;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             transition: 0.3s;
+            font-weight: 600;
         }
         .download-btn:active { transform: scale(0.95); }
-
-        @media print { .download-btn { display: none !important; } }
-        .hide-for-pdf { display: none !important; }
 
         /* --- AESTHETIC CORNER ELEMENTS --- */
         .watercolor-blob-tl {
@@ -131,7 +122,7 @@
 
         /* --- SLIDE 4: Glassmorphism --- */
         .slide-4 { background: url('https://images.unsplash.com/photo-1542382156909-9ae37b3f56fd?auto=format&fit=crop&w=1920&q=80') center/cover; justify-content: center; align-items: center; padding: 100px; }
-        .s4-glass-panel { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 2px solid rgba(255,255,255,0.6); width: 1600px; height: 800px; border-radius: 20px; padding: 75px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; }
+        .s4-glass-panel { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(12px); border: 2px solid rgba(255,255,255,0.6); width: 1600px; height: 800px; border-radius: 20px; padding: 75px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; }
         .s4-title { font-size: 60px; color: #112211; margin-bottom: 75px; text-align: center; text-shadow: 0 2px 10px rgba(255,255,255,0.8); }
         .s4-timeline { display: flex; justify-content: space-between; position: relative; }
         .s4-line { position: absolute; top: 30px; left: 5%; right: 5%; height: 3px; background: rgba(0,0,0,0.3); z-index: 1; }
@@ -173,7 +164,7 @@
 
         /* --- SLIDE 8: Glassmorphism --- */
         .slide-8 { background: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 115px; align-items: center; justify-content: flex-end; }
-        .s8-glass-panel { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); width: 1100px; padding: 75px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .s8-glass-panel { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(15px); width: 1100px; padding: 75px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         .s8-glass-panel h2 { font-size: 60px; color: #112211; margin-bottom: 45px; text-shadow: 0 2px 10px rgba(255,255,255,0.8); }
         .s8-list { display: flex; flex-direction: column; gap: 30px; }
         .s8-row { background: rgba(255, 255, 255, 0.6); padding: 30px; border-radius: 8px; border-left: 8px solid #355240; }
@@ -225,19 +216,19 @@
 </head>
 <body>
 
-<!-- MAGIC PDF BUTTON -->
-<button class="download-btn no-print" onclick="generatePDF()">📥 Download PDF</button>
+<!-- THE NEW MAGIC PDF BUTTON -->
+<button class="download-btn" onclick="generatePDF()">📥 Download Presentation</button>
 
-<div id="presentation-container" class="presentation-container">
+<div id="presentation-container">
 
-    <!-- SLIDE 1: Title -->
+    <!-- SLIDE 1 -->
     <div class="slide slide-1">
         <div class="watercolor-blob-tl"></div>
         <div class="watercolor-blob-br"></div>
         <div class="gold-line-tl"></div>
         <div class="gold-line-br"></div>
-        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" class="corner-leaf leaf-top-left" alt="">
-        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" class="corner-leaf leaf-bottom-right" alt="">
+        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="">
+        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="">
         
         <div class="s1-text">
             <h1>Kulranjan<br>Mukherjee</h1>
@@ -252,10 +243,10 @@
         </div>
     </div>
 
-    <!-- SLIDE 2: Black 1 -->
+    <!-- SLIDE 2 -->
     <div class="slide slide-2">
         <div class="s2-img-box">
-            <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=800&q=80" alt="Vintage B&W Scholar Portrait" class="s2-img">
+            <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&w=800&q=80" crossorigin="anonymous" alt="Vintage Scholar" class="s2-img">
         </div>
         <div class="s2-text">
             <h2>Kulranjan Mukherjee</h2>
@@ -264,30 +255,30 @@
         </div>
     </div>
 
-    <!-- SLIDE 3: Light -->
+    <!-- SLIDE 3 -->
     <div class="slide slide-3">
         <div class="watercolor-blob-tl" style="opacity: 0.5;"></div>
         <div class="gold-line-br" style="opacity: 0.5;"></div>
-        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" class="corner-leaf leaf-bottom-right" alt="" style="opacity: 0.4;">
+        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="" style="opacity: 0.4;">
         
         <h2 class="s3-title">Why His Name Remains Relevant</h2>
         <div class="s3-grid">
             <div class="s3-card">
                 <h3>Foundational Revival Voice</h3>
-                <p>Open sources on the history of Indian naturopathy consistently place him among the revival figures who helped the system spread in Bengal and beyond.</p>
+                <p>Open sources on the history of Indian naturopathy consistently place him among the revival figures who helped the system spread in Bengal and beyond[span_0](start_span)[span_0](end_span).</p>
             </div>
             <div class="s3-card">
                 <h3>Writer of Practical Texts</h3>
-                <p>His books did not stop at mere theory. They tried to turn Nature Cure into daily practice—focusing heavily on diet, water, sunlight, fasting, and routine.</p>
+                <p>His books did not stop at mere theory[span_1](start_span)[span_1](end_span). They tried to turn Nature Cure into daily practice—focusing heavily on diet, water, sunlight, fasting, and routine[span_2](start_span)[span_2](end_span).</p>
             </div>
             <div class="s3-card">
                 <h3>BNYS Curriculum Pillar</h3>
-                <p>University syllabi still list his name in the history of Indian naturopaths, meaning students continue meeting him as part of the subject itself.</p>
+                <p>University syllabi still list his name in the history of Indian naturopaths, meaning students continue meeting him as part of the subject itself[span_3](start_span)[span_3](end_span).</p>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 4: Glassmorphism -->
+    <!-- SLIDE 4 -->
     <div class="slide slide-4">
         <div class="s4-glass-panel">
             <h2 class="s4-title">The Evolution of the Movement</h2>
@@ -296,28 +287,28 @@
                 <div class="s4-node">
                     <div class="s4-dot"></div>
                     <div class="s4-year">1894</div>
-                    <div class="s4-desc">Louis Kuhne's book was translated into Telugu, helping revive interest in Nature Cure.</div>
+                    <div class="s4-desc">Louis Kuhne's book was translated into Telugu, helping revive interest in Nature Cure[span_4](start_span)[span_4](end_span).</div>
                 </div>
                 <div class="s4-node">
                     <div class="s4-dot"></div>
                     <div class="s4-year">1904</div>
-                    <div class="s4-desc">Hindi and Urdu translations broadened the reach further.</div>
+                    <div class="s4-desc">Hindi and Urdu translations broadened the reach further[span_5](start_span)[span_5](end_span).</div>
                 </div>
                 <div class="s4-node">
                     <div class="s4-dot"></div>
                     <div class="s4-year">Mid-1900s</div>
-                    <div class="s4-desc">Indian naturopathy grew rapidly in Bengal, Maharashtra, Gujarat, Andhra, and UP.</div>
+                    <div class="s4-desc">Indian naturopathy grew rapidly in Bengal, Maharashtra, Gujarat, Andhra, and UP[span_6](start_span)[span_6](end_span).</div>
                 </div>
                 <div class="s4-node">
                     <div class="s4-dot"></div>
                     <div class="s4-year">BNYS Era</div>
-                    <div class="s4-desc">Kulranjan Mukherjee appears among the core Indian naturopaths taught in history units.</div>
+                    <div class="s4-desc">Kulranjan Mukherjee appears among the core Indian naturopaths taught in history units[span_7](start_span)[span_7](end_span).</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 5: Light -->
+    <!-- SLIDE 5 -->
     <div class="slide slide-5">
         <div class="watercolor-blob-br" style="opacity: 0.5;"></div>
         <div class="gold-line-tl" style="opacity: 0.5;"></div>
@@ -329,7 +320,7 @@
                 <div class="s5-book-content">
                     <h3>Abhinav Prakartik Chikitsa</h3>
                     <span class="s5-year">Published: 1947</span>
-                    <p>A text mapping Nature Cure into routine. It covers constipation, bath therapy, mud packs, air baths, sunlight, fasting, massage, and exercise.</p>
+                    <p>A text mapping Nature Cure into routine[span_8](start_span)[span_8](end_span). It covers constipation, bath therapy, mud packs, air baths, sunlight, fasting, massage, and exercise[span_9](start_span)[span_9](end_span).</p>
                 </div>
             </div>
             <div class="s5-book">
@@ -337,28 +328,28 @@
                 <div class="s5-book-content">
                     <h3>Dainandin Rogon Ki Prakritik Chikitsa</h3>
                     <span class="s5-year">Published: 1947</span>
-                    <p>Frequently cited in reading lists as part of an early Hindi-language effort to make Nature Cure highly useful to ordinary readers.</p>
+                    <p>Frequently cited in reading lists as part of an early Hindi-language effort to make Nature Cure highly useful to ordinary readers[span_10](start_span)[span_10](end_span).</p>
                 </div>
             </div>
             <div class="s5-book">
                 <div class="s5-book-top"></div>
                 <div class="s5-book-content">
-                    <h3>Protective Foods in Health & Disease</h3>
+                    <h3>Protective Foods in Health</h3>
                     <span class="s5-year">Published: 1961</span>
-                    <p>An English book on diet therapy. The title reflects his emphasis on food as a protective, not just a filling, element.</p>
+                    <p>An English book on diet therapy[span_11](start_span)[span_11](end_span). The title reflects his emphasis on food as a protective, not just a filling, element[span_12](start_span)[span_12](end_span).</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 6: Light Loop -->
+    <!-- SLIDE 6 -->
     <div class="slide slide-6">
         <div class="watercolor-blob-tl" style="opacity: 0.6;"></div>
-        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" class="corner-leaf leaf-top-left" alt="" style="opacity: 0.5;">
+        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="" style="opacity: 0.5;">
         
         <div class="s6-left">
             <h2>The Nature Cure Loop</h2>
-            <p>Kulranjan Mukherjee emphasized simple methods with clear logic. By seamlessly integrating these four elements, he created a highly visual and practical loop for maintaining promotive health.</p>
+            <p>Kulranjan Mukherjee emphasized simple methods with clear logic[span_13](start_span)[span_13](end_span). By seamlessly integrating these four elements, he created a highly visual and practical loop for maintaining promotive health[span_14](start_span)[span_14](end_span).</p>
         </div>
         <div class="s6-right">
             <div class="s6-circle s6-c1">Diet</div>
@@ -368,83 +359,83 @@
         </div>
     </div>
 
-    <!-- SLIDE 7: Black 2 -->
+    <!-- SLIDE 7 -->
     <div class="slide slide-7">
         <h2 class="s7-title">A Modern Approach to Ancient Wisdom</h2>
         <div class="s7-grid">
             <div class="s7-item">
                 <h3>Scientific Basis</h3>
-                <p>His Nature Cure writing was consistently described as giving a firm and scientific basis to the healing system.</p>
+                <p>His Nature Cure writing was consistently described as giving a firm and scientific basis to the healing system[span_15](start_span)[span_15](end_span).</p>
             </div>
             <div class="s7-item">
                 <h3>Preventive Focus</h3>
-                <p>Health was not only about curing existing disease; it was foundationally about preventing it.</p>
+                <p>Health was not only about curing existing disease; it was foundationally about preventing it[span_16](start_span)[span_16](end_span).</p>
             </div>
             <div class="s7-item">
                 <h3>Promotive Health</h3>
-                <p>Food, water, light, rest, and routine were treated as active tools that actively build health.</p>
+                <p>Food, water, light, rest, and routine were treated as active tools that actively build health[span_17](start_span)[span_17](end_span).</p>
             </div>
             <div class="s7-item">
                 <h3>Practical Method</h3>
-                <p>He strongly emphasized simple methods that readers could actually follow in their daily routines.</p>
+                <p>He strongly emphasized simple methods that readers could actually follow in their daily routines[span_18](start_span)[span_18](end_span).</p>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 8: Glassmorphism -->
+    <!-- SLIDE 8 -->
     <div class="slide slide-8">
         <div class="s8-glass-panel">
             <h2>Alignment with BNYS Training</h2>
             <div class="s8-list">
                 <div class="s8-row">
                     <h4>Nutrition as Therapy</h4>
-                    <p>Protective foods and a thoughtful diet are not extras; they are part of the core method.</p>
+                    <p>Protective foods and a thoughtful diet are not extras; they are part of the core method[span_19](start_span)[span_19](end_span).</p>
                 </div>
                 <div class="s8-row">
                     <h4>Hydrotherapy</h4>
-                    <p>Water is treated as a precise therapeutic medium, not just a comfort.</p>
+                    <p>Water is treated as a precise therapeutic medium, not just a comfort[span_20](start_span)[span_20](end_span).</p>
                 </div>
                 <div class="s8-row">
                     <h4>Elemental Application</h4>
-                    <p>Natural elements like sunlight, air, and mud are used as measurable interventions in practice.</p>
+                    <p>Natural elements like sunlight, air, and mud are used as measurable interventions in practice[span_21](start_span)[span_21](end_span).</p>
                 </div>
                 <div class="s8-row">
                     <h4>Lifestyle Discipline</h4>
-                    <p>Rest, timing, hygiene, exercise, and breathing complete the treatment picture.</p>
+                    <p>Rest, timing, hygiene, exercise, and breathing complete the treatment picture[span_22](start_span)[span_22](end_span).</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 9: Light -->
+    <!-- SLIDE 9 -->
     <div class="slide slide-9">
         <div class="watercolor-blob-br" style="opacity: 0.6;"></div>
-        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" class="corner-leaf leaf-bottom-right" alt="" style="opacity: 0.5;">
+        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-bottom-right" alt="" style="opacity: 0.5;">
         
         <div class="s9-left">
             <h2>Anchored in the Syllabus</h2>
-            <p>Kulranjan Mukherjee is not merely a historical footnote. BNYS syllabi across India, including the University of Patanjali, repeat the pattern of placing him among the foundational names students must know.</p>
+            <p>Kulranjan Mukherjee is not merely a historical footnote[span_23](start_span)[span_23](end_span). BNYS syllabi across India, including the University of Patanjali, repeat the pattern of placing him among the foundational names students must know[span_24](start_span)[span_24](end_span).</p>
             <div class="s9-quote">"He is not just a historical name; he is a curriculum name."</div>
         </div>
         <div class="s9-right">
             <div class="s9-table-header">Curriculum Placement</div>
             <div class="s9-table-row">
                 <h3>Kulranjan Mukherjee</h3>
-                <p>Philosophy and History of Indian Naturopaths (BNYS I-Year)</p>
+                <p>Philosophy and History of Indian Naturopaths (BNYS I-Year)[span_25](start_span)[span_25](end_span)</p>
             </div>
         </div>
     </div>
 
-    <!-- SLIDE 10: Campus -->
+    <!-- SLIDE 10 -->
     <div class="slide slide-10">
         <div class="s10-image"></div>
         <div class="s10-content">
             <h2>University of Patanjali</h2>
-            <p>A holistic education environment in Haridwar with yoga and naturopathy framing the student experience. The green surroundings and discipline-focused campus mood perfectly support the legacy of promotive health and natural healing.</p>
+            <p>A holistic education environment in Haridwar with yoga and naturopathy framing the student experience[span_26](start_span)[span_26](end_span). The green surroundings and discipline-focused campus mood perfectly support the legacy of promotive health and natural healing[span_27](start_span)[span_27](end_span).</p>
         </div>
     </div>
 
-    <!-- SLIDE 11: Black 3 -->
+    <!-- SLIDE 11 -->
     <div class="slide slide-11">
         <div class="s11-frame">
             <h2>The Continuing Legacy</h2>
@@ -453,12 +444,12 @@
         </div>
     </div>
 
-    <!-- SLIDE 12: Light End -->
+    <!-- SLIDE 12 -->
     <div class="slide slide-12">
         <div class="watercolor-blob-tl"></div>
         <div class="watercolor-blob-br"></div>
         <div class="gold-line-br"></div>
-        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" class="corner-leaf leaf-top-left" alt="" style="opacity: 0.8;">
+        <img src="https://images.unsplash.com/photo-1596431948839-a9a7905fbc08?auto=format&fit=crop&w=600&q=80" crossorigin="anonymous" class="corner-leaf leaf-top-left" alt="" style="opacity: 0.8;">
         
         <div class="s12-left">
             <h2>Thank You.</h2>
@@ -471,37 +462,50 @@
         </div>
         <div class="s12-right">
             <h4>References</h4>
-            <div class="s12-ref">Wellcome Collection — Catalogue record for Protective Foods in Health and Disease (1961).</div>
-            <div class="s12-ref">University of Patanjali BNYS I-year syllabus — Kulranjan Mukherjee in history units.</div>
-            <div class="s12-ref">History pages on Nature-Cure revival naming him among the foundation figures.</div>
+            <div class="s12-ref">Wellcome Collection — Catalogue record for Protective Foods in Health and Disease (1961)[span_28](start_span)[span_28](end_span).</div>
+            <div class="s12-ref">University of Patanjali BNYS I-year syllabus — Kulranjan Mukherjee in history units[span_29](start_span)[span_29](end_span).</div>
+            <div class="s12-ref">History pages on Nature-Cure revival naming him among the foundation figures[span_30](start_span)[span_30](end_span).</div>
         </div>
     </div>
 
 </div>
 
-<!-- SCRIPT TO GENERATE PDF -->
+<!-- SCRIPT TO RENDER ONE SLIDE AT A TIME -->
 <script>
-    function generatePDF() {
-        const element = document.getElementById('presentation-container');
+    async function generatePDF() {
         const btn = document.querySelector('.download-btn');
+        btn.innerHTML = "⏳ Generating... Please wait";
+        btn.style.pointerEvents = "none";
         
-        // Hide button while capturing
-        btn.classList.add('hide-for-pdf');
-        
-        // Added pagebreak css rule and locked window width to 1920
-        const opt = {
-            margin:       0,
-            filename:     'Lakshmi Presentation.pdf',
-            image:        { type: 'jpeg', quality: 1.0 },
-            pagebreak:    { mode: 'css' },
-            html2canvas:  { scale: 2, useCORS: true, scrollY: 0, windowWidth: 1920 }, 
-            jsPDF:        { unit: 'px', format: [1920, 1080], orientation: 'landscape', hotfixes: ["px_scaling"] }
-        };
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1920, 1080] });
+        const slides = document.querySelectorAll('.slide');
 
-        // Generate PDF and bring button back
-        html2pdf().set(opt).from(element).save().then(() => {
-            btn.classList.remove('hide-for-pdf');
-        });
+        // Loop through each slide individually to prevent mobile RAM overload
+        for (let i = 0; i < slides.length; i++) {
+            const canvas = await html2canvas(slides[i], { 
+                scale: 1.5, // Reduced from 2 to 1.5 to guarantee Android memory limits aren't exceeded
+                useCORS: true,
+                logging: false,
+                backgroundColor: "#ffffff"
+            });
+            
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+            
+            // Add a new page for every slide after the first one
+            if (i > 0) {
+                pdf.addPage([1920, 1080], 'landscape');
+            }
+            
+            // Paste the single image onto the PDF page
+            pdf.addImage(imgData, 'JPEG', 0, 0, 1920, 1080);
+        }
+
+        // Save PDF with requested filename format
+        pdf.save('AaRAv  --  05 - 07 - 2026.pdf');
+        
+        btn.innerHTML = "📥 Download Presentation";
+        btn.style.pointerEvents = "auto";
     }
 </script>
 
