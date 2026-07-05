@@ -25,23 +25,24 @@
             flex-direction: column;
             align-items: center;
             font-family: 'Montserrat', sans-serif;
-            /* Force exact desktop dimensions so mobile browsers don't squish the design */
             min-width: 1920px; 
+            margin: 0;
         }
 
         #presentation-container {
             width: 1920px;
             background: #fff;
+            overflow: hidden;
         }
 
         .slide {
             width: 1920px;
-            height: 1080px; /* Locked 16:9 Aspect Ratio */
+            height: 1080px; 
             position: relative;
             overflow: hidden;
-            page-break-after: always;
             display: flex;
             background-color: #fff;
+            /* Removed the page-break command to stop the blank pages */
         }
 
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
@@ -65,7 +66,6 @@
         }
         .download-btn:active { transform: scale(0.95); }
 
-        /* Hide button during PDF capture */
         @media print { .download-btn { display: none !important; } }
         .hide-for-pdf { display: none !important; }
 
@@ -220,7 +220,6 @@
 <!-- MAGIC PDF BUTTON -->
 <button class="download-btn no-print" onclick="generatePDF()">📥 Download PDF</button>
 
-<!-- THIS CONTAINER HOLDS ALL SLIDES -->
 <div id="presentation-container" class="presentation-container">
 
     <!-- SLIDE 1: Title -->
@@ -481,11 +480,12 @@
         // Hide button while capturing
         btn.classList.add('hide-for-pdf');
         
+        // Increased scale to 2 for much sharper text resolution
         const opt = {
             margin:       0,
             filename:     'AaRAv  --  05 - 07 - 2026.pdf',
             image:        { type: 'jpeg', quality: 1.0 },
-            html2canvas:  { scale: 1, useCORS: true }, 
+            html2canvas:  { scale: 2, useCORS: true, scrollY: 0 }, 
             jsPDF:        { unit: 'px', format: [1920, 1080], orientation: 'landscape', hotfixes: ["px_scaling"] }
         };
 
