@@ -20,20 +20,18 @@
 
         body {
             background-color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             font-family: 'Montserrat', sans-serif;
-            min-width: 1920px; 
             margin: 0;
-            padding: 50px 0;
-            gap: 50px;
+            overflow-x: hidden; /* Kills all horizontal scrolling */
         }
 
         #presentation-container {
+            width: 1920px;
             display: flex;
             flex-direction: column;
-            gap: 50px; /* Space between slides on web view */
+            /* Magically shrinks the massive 1920px slides to perfectly fit your phone's exact screen width */
+            transform-origin: top left;
+            transform: scale(calc(100vw / 1920)); 
         }
 
         .slide {
@@ -478,13 +476,17 @@
         btn.style.pointerEvents = "none";
         
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1920, 1080] });
+        // Changed to standard presentation points (1280x720 pt) so mobile PDF viewers auto-fit it to screen
+        const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: [1280, 720] });
         const slides = document.querySelectorAll('.slide');
+        const container = document.getElementById('presentation-container');
 
-        // Loop through each slide individually to prevent mobile RAM overload
+        // Temporarily disable the phone screen shrink so the PDF captures in full HD quality
+        container.style.transform = 'none';
+
         for (let i = 0; i < slides.length; i++) {
             const canvas = await html2canvas(slides[i], { 
-                scale: 1.5, // Reduced from 2 to 1.5 to guarantee Android memory limits aren't exceeded
+                scale: 2, // High Quality
                 useCORS: true,
                 logging: false,
                 backgroundColor: "#ffffff"
@@ -492,16 +494,15 @@
             
             const imgData = canvas.toDataURL('image/jpeg', 0.95);
             
-            // Add a new page for every slide after the first one
-            if (i > 0) {
-                pdf.addPage([1920, 1080], 'landscape');
-            }
+            if (i > 0) pdf.addPage([1280, 720], 'landscape');
             
-            // Paste the single image onto the PDF page
-            pdf.addImage(imgData, 'JPEG', 0, 0, 1920, 1080);
+            // Map the full HD image onto the standard PDF page size
+            pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
         }
 
-        // Save PDF with requested filename format
+        // Restore the phone screen shrink after downloading
+        container.style.transform = 'scale(calc(100vw / 1920))';
+
         pdf.save('AaRAv  --  05 - 07 - 2026.pdf');
         
         btn.innerHTML = "📥 Download Presentation";
