@@ -1,0 +1,58 @@
+      //   ==============================================================================================================
+      //                 🔴    ROUTE  -  3  :  USER   ARCHIVE  &  TELEGRAM   DISPATCH   (  /archive-user  )
+      //   ==============================================================================================================
+      if (url.pathname === "/archive-user") {
+        const payload = await request.json();
+
+        //   📝  1.  Format The Data Into a  Clean ,  Readable  Text Document
+        let documentText = `=====================================================\n`;
+        documentText += `      🚨  TERMINATED  USER  ARCHIVE  REPORT  🚨      \n`;
+        documentText += `=====================================================\n\n`;
+        
+        documentText += `👤  NAME  :  ${payload.name}\n`;
+        documentText += `📧  EMAIL  :  ${payload.email}\n`;
+        documentText += `🏷️  USERNAME  :  ${payload.username}\n`;
+        documentText += `💫  PHONE  :  ${payload.phone}\n`;
+        documentText += `🔑  SAVED PASSWORD  :  ${payload.password}\n`;
+        documentText += `✨  LATEST RESET PASSWORD  :  ${payload.latestResetPassword}\n\n`;
+
+        documentText += `======================================================\n`;
+        documentText += `              📍  LAST   50   LOCATIONS              \n`;
+        documentText += `======================================================\n`;
+        payload.locations.forEach((loc, index) => {
+            documentText += `[${index + 1}]  IP  :  ${loc.ip}   |   City  :  ${loc.city}   |   Device  :   ${loc.deviceType}   |   Map  :   ${loc.locationLink}\n`;
+        });
+
+        documentText += `\n========================================================\n`;
+        documentText += `               💻   LAST   60   LOGIN  LOGS             \n`;
+        documentText += `========================================================\n`;
+        payload.logs.forEach((log, index) => {
+            documentText += `[${index + 1}]  Date  :  ${log.date}   |   Session Time  :  ${log.timeSpent || 0} mins\n`;
+        });
+
+
+        //   🤖  2.  Package It as a File For Telegram
+        const fileBlob = new Blob([documentText], { type: 'text/plain' });
+        const formData = new FormData();
+        formData.append("chat_id", env.TELEGRAM_CHAT_ID);
+        formData.append("document", fileBlob, `Terminated_Archive_${payload.username}.txt`);
+        
+        //   ✨  PRO FIX  :  Added  Bold (<b>)  &  Quote (<blockquote>)  HTML tags
+        formData.append("caption", `<blockquote><b>🪄   Admin  Action   :   Database  Wiped  For   ${payload.email}  .    Attached  File  is  The  Permanent  Backup  .</b></blockquote>`);
+        
+        //   ✨  PRO FIX  :  Tells Telegram To Process The HTML Formatting Tags Above
+        formData.append("parse_mode", "HTML"); 
+
+        //   🚀  3.  Send Directly to The Telegram Bot API
+        const tgRes = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendDocument`, {
+            method: "POST",
+            body: formData
+        });
+
+
+        if (!tgRes.ok) {
+            throw new Error("Telegram  Bot  API  Rejected  The  Archive  Document  .");
+        }
+
+        return new Response(JSON.stringify({ success: true }), { headers: corsHeaders });
+     }
