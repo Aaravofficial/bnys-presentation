@@ -372,7 +372,42 @@
             backdrop-filter: none !important;
         }
 
-    
+
+        /*   🪄  FIX  :  Forces  Slide  12's  Box To Be Completely Transparent in The PDF So Your Green Bracket Lines Shine !!   🪄   */
+        .pdf-export-mode .s12-box {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            box-shadow: none !important;
+        }
+
+        
+        /*   ========================================================================================
+                       🪄   PERFECT  PC  PRINT  FIX   (  FOR  REAL  GLASSMORPHISM  )   🪄
+             ========================================================================================   */
+        @media print {
+            @page {
+                size: 1920px 1080px;                 /*   Forces The PDF To Exactly Match Your 16:9 Slides  !!   */
+                margin: 0;                           /*   Removes All Ugly White Browser Margins   */
+            }
+            body {
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;         /*   Forces Chrome To Render The  Glass & Backgrounds  !!   */
+                background-color: #fff !important;
+            }
+            .download-btn, #ui-wrapper, .ambient-glow, #status-modal { 
+                display: none !important;            /*   Hides  Buttons & UI  From The Final PDF   */
+            }
+            #presentation-container {
+                transform: none !important;          /*   Removes The Automatic Screen Shrinking   */
+            }
+            .slide {
+                box-shadow: none !important;         /*   Removes The Outer  Drop - Shadow  For a Clean Page Edge   */
+                page-break-after: always !important;
+                page-break-inside: avoid !important;
+            }
+        }
+
+
     </style>
     
 </head>
