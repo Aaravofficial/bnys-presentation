@@ -910,8 +910,8 @@
             const wrapper = document.createElement('div');
             wrapper.className = 'split-inputs-row';
             wrapper.innerHTML = `
-                <input type="text" class="split-text-input input-lines" placeholder="🪶   Enter  Line  Numbers   ( e.g.  1-500 )">
-                <input type="text" class="split-text-input input-filename" placeholder="🗞️   Enter  Filename   ( e.g.  bot_part${index}.py )">
+                <input type="text" class="split-text-input input-lines" placeholder="🪶   Enter  Line  Numbers   (  E.g.  ~  1-500  )">
+                <input type="text" class="split-text-input input-filename" placeholder="🗞️   Enter  Filename   (  E.g.  ~  File_Part${index}.py  )">
             `;
             buttonElement.replaceWith(wrapper);
         }
@@ -966,10 +966,17 @@
         const editorContainer = document.getElementById('editor-container');
         const zoomLayer = document.getElementById('zoom-layer');
 
-        //   Sync  Scroll  Perfectly
+        //   🪄  FIX  :  Highly  Throttled  Scroll  Sync   (  Stops  layout  thrashing  when  scrolling  fast  )
+        let isScrolling = false;
         splitTextarea.addEventListener('scroll', () => {
-            lineNumbers.scrollTop = splitTextarea.scrollTop;
-        });
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    lineNumbers.scrollTop = splitTextarea.scrollTop;
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        }, { passive: true });
 
         //   Generate  Line  Numbers  On  Paste  or  Type
         function updateLineNumbers() {
@@ -1022,11 +1029,16 @@
 
 
         //   🪄  Hardware  GPU   Pinch - To - Zoom   (  100 %  Lag - Free  For  10k +  Lines  )
+        //   🪄  ULTIMATE  GPU   Pinch - To - Zoom   (  The  " Frozen  Image "  Hack  )
         editorContainer.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
                 initialDistance = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
                 initialFontSize = currentFontSize;
+                
+                //   🪄  FIX  :  Instantly  Freeze  The  Textareas  So  The  CPU  Stops  Calculating  Touches  &  Scrolls
+                splitTextarea.classList.add('freeze-for-zoom');
+                lineNumbers.classList.add('freeze-for-zoom');
                 
                 //   Track  Finger  Center  For  Natural  Zoom  Origin
                 const rect = editorContainer.getBoundingClientRect();
@@ -1051,8 +1063,9 @@
                 if (simulatedSize > 60) pinchScale = 60 / initialFontSize;
 
                 //   GPU  Handles  This  Instantly  Without  Touching  The  Layout
+                //   🪄  FIX  :  Added  translateZ(0)  To  Strictly  Enforce  True  3D  Rendering  During  The  Move
                 requestAnimationFrame(() => {
-                    zoomLayer.style.transform = `scale(${pinchScale})`;
+                    zoomLayer.style.transform = `translateZ(0) scale(${pinchScale})`;
                 });
             }
         }, { passive: false });
@@ -1063,12 +1076,16 @@
                 currentFontSize = Math.min(Math.max(8, Math.round(initialFontSize * pinchScale)), 60);
                 
                 zoomLayer.style.willChange = 'auto';
-                zoomLayer.style.transform = `scale(1)`;
+                zoomLayer.style.transform = `translateZ(0) scale(1)`;
                 
                 splitTextarea.style.fontSize = `${currentFontSize}px`;
                 splitTextarea.style.lineHeight = `${currentFontSize * 1.5}px`;
                 lineNumbers.style.fontSize = `${currentFontSize}px`;
                 lineNumbers.style.lineHeight = `${currentFontSize * 1.5}px`;
+                
+                //   🪄  FIX  :  Unfreeze  The  Textareas  So  You  Can  Scroll  &  Type  Again
+                splitTextarea.classList.remove('freeze-for-zoom');
+                lineNumbers.classList.remove('freeze-for-zoom');
                 
                 pinchScale = 1;
             }
